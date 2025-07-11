@@ -1,0 +1,19 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 4%;
+    background-color: aliceblue;
+}
+.navbar .logo-name{
+    color: tomato;
+    font-size: 30px;
+    font-weight: 1000;
+    text-transform: capitalize;
+}
+.navbar .logo{
+    width: max(10%,80px);
+}
+.navbar .profile{
+    width: 40px;
+}
