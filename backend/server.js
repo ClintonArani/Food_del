@@ -1,39 +1,56 @@
-import express from 'express';
-import cors from 'cors';
-import { connectDB } from './config/db.js';
-import foodRouter from './routes/FoodRoute.js';
-import userRouter from './routes/userRoute.js';
-import 'dotenv/config'
-import cartRouter from './routes/cartRoute.js';
-import orderRouter from './routes/orderRoute.js';
+import express from "express";
+import cors from "cors";
+import "dotenv/config.js";
 
-// App configuration
+import { connectDB } from "./config/db.js";
+
+import foodRouter from "./routes/FoodRoute.js";
+import userRouter from "./routes/userRoute.js";
+import cartRouter from "./routes/cartRoute.js";
+import orderRouter from "./routes/orderRoute.js";
+
 const app = express();
-const port = 4000;
 
-// Middleware
-app.use(express.json());
+// Global Middleware
 app.use(cors());
+app.use(express.json());
 
-//db connection
-connectDB();
+// Serve uploaded images statically
+app.use("/images", express.static("uploads"));
 
-//api endpoint
-app.use("/api/food",foodRouter)
-app.use("/images",express.static('uploads'))
-app.use("/api/user",userRouter)
-app.use("/api/cart",cartRouter)
-app.use("/api/order",orderRouter)
+// API Routes
+app.use("/api/food", foodRouter);
+app.use("/api/user", userRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 
-
-// Routes
+// Health Check
 app.get("/", (req, res) => {
-    res.send("API Working");
+  res.send("Food Delivery API is running");
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`);
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error("Unhandled error:", err);
+  res.status(500).json({ error: err.message || "Internal server error" });
 });
 
+// Start server only in development
+const startServer = async () => {
+  try {
+    await connectDB();
 
+    if (process.env.NODE_ENV !== "production") {
+      const PORT = process.env.PORT || 4000;
+      app.listen(PORT, () => console.log(`Server is running on PORT: ${PORT}`));
+    }
+  } catch (error) {
+    console.error("Failed to start server:", error.message);
+    process.exit(1);
+  }
+};
+
+startServer();
+
+// Export app for Vercel
+export default app;
