@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { ENV } from "./env.js";
 
 let isConnected = false; // Global cache for connection state
 
@@ -9,7 +10,7 @@ export const connectDB = async () => {
   }
 
   try {
-    await mongoose.connect('mongodb+srv://greatstack:28922002@cluster0.4gelb4x.mongodb.net/food_del');
+    await mongoose.connect(`${ENV.MONGO_URI}/food_del`);
 
     isConnected = true;
     console.log("✅ MongoDB connected successfully.");
