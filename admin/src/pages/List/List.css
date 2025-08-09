@@ -1,28 +1,202 @@
-.list-table-format{
-    display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 15px;
-    border: 1px solid #cacaca;
-    font-size: 13px;
-}
-.list-table-format.title{
-    background-color: #f9f9f9;
-}
-.list-table-format img{
-    width: 50px;
-}
-.cursor{
-    cursor: pointer;
+/* List.css - Sidebar Integrated Version */
+
+.list {
+  width: calc(100% - 300px); /* Account for sidebar width */
+  margin-left: 300px; /* Match sidebar width */
+  padding: 2rem;
+  transition: all 0.3s ease;
+  min-height: 100vh;
 }
 
-@media (max-width:600px){
-    .list-table-format{
-        grid-template-columns: 1fr 3fr 1fr;
-        gap: 15px;
-    }
-    .list-table-format.title{
-        display: none;
-    }
+.list > p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.list > p::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+}
+
+/* Table Styles */
+.list-table {
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.list-table-format {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 100px 120px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.list-table-format.title {
+  background-color: #f8fafc;
+  font-weight: 600;
+  color: #334155;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.list-table-format img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.list-table-format p {
+  margin: 0;
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+.list-table-format > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.list-table-format button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-table-format button:first-child {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.list-table-format button:first-child:hover {
+  background-color: #2563eb;
+}
+
+.list-table-format button:last-child {
+  background-color: #ef4444;
+  color: white;
+}
+
+.list-table-format button:last-child:hover {
+  background-color: #dc2626;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .list {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .list {
+    width: 100%;
+    margin-left: 0;
+    padding: 1.5rem 1rem;
+  }
+  
+  .list-table-format {
+    grid-template-columns: 80px 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+  
+  .list-table-format.title {
+    display: none;
+  }
+  
+  .list-table-format img {
+    width: 60px;
+    height: 60px;
+    grid-row: span 2;
+  }
+  
+  .list-table-format > div {
+    grid-column: 3;
+    grid-row: 2;
+  }
+  
+  .list-table-format p:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .list {
+    padding: 1rem;
+  }
+  
+  .list-table-format {
+    grid-template-columns: 60px 1fr;
+  }
+  
+  .list-table-format p:nth-child(3),
+  .list-table-format p:nth-child(4) {
+    grid-column: 2;
+  }
+  
+  .list-table-format p:nth-child(3) {
+    grid-row: 2;
+  }
+  
+  .list-table-format p:nth-child(4) {
+    grid-row: 3;
+  }
+  
+  .list-table-format > div {
+    grid-column: 2;
+    grid-row: 4;
+  }
+  
+  .modal {
+    padding: 1.5rem;
+  }
 }

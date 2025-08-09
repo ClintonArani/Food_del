@@ -28,15 +28,18 @@ const StoreContextProvider = (props) => {
   
 
   const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for(const item in cartItems){
-        if(cartItems[item] > 0) {
-            let itemInfo = food_list.find((product) => product._id === item);
-            totalAmount += itemInfo.price * cartItems[item];
-        }
+  let totalAmount = 0;
+  for (const item in cartItems) {
+    if (cartItems[item] > 0) {
+      const itemInfo = food_list.find((product) => product._id === item);
+      if (itemInfo) { // only if we found it
+        totalAmount += itemInfo.price * cartItems[item];
+      }
     }
-    return totalAmount;
   }
+  return totalAmount;
+};
+
 
   const fetchFoodList = async () => {
     try {
@@ -67,6 +70,20 @@ const StoreContextProvider = (props) => {
     }
     loadData();
   },[])
+
+  // 🛠 Cleanup cart when food_list changes to avoid "price undefined" errors
+useEffect(() => {
+  setCartItems((prev) => {
+    const cleaned = {};
+    for (const id in prev) {
+      if (food_list.some((p) => p._id === id)) {
+        cleaned[id] = prev[id];
+      }
+    }
+    return cleaned;
+  });
+}, [food_list]);
+
   const contextValue = {
     food_list,
     cartItems,

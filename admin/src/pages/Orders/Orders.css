@@ -1,42 +1,247 @@
-.order-item{
-    display: grid;
-    grid-template-columns: 5fr 2fr 1fr 1fr 1fr;
-    align-items: start;
-    gap: 30px;
-    border: 1px solid tomato;
-    padding: 20px;
-    margin: 30px 0px;
-    font-size: 14px;
-    color: #505050;
+/* Orders.css - Sidebar Integrated Modern Version */
+
+.order {
+  width: calc(100% - 300px); /* Account for sidebar width */
+  margin-left: 300px; /* Match sidebar width */
+  padding: 2rem;
+  background: #f8fafc;
+  min-height: 100vh;
+  transition: all 0.3s ease;
 }
-.order-item-food, .order-item-name{
-    font-weight: 600;
+
+.order h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
 }
-.order-item-name{
-    margin-top: 30px;
-    margin-bottom: 5px;
+
+.order h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+  border-radius: 2px;
 }
-.order-item-address{
-    margin-bottom: 10px;
+
+/* Order List Grid */
+.order-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
 }
-.order-item select{
-    background-color: #ffe8e4;
-    border: 1 solid tomato;
-    width: max(10vw,120px);
-    padding: 10px;
-    outline: none;
+
+/* Order Card - Glass Morphism Style */
+.order-item {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
-@media (max-width:1000px){
-    .order-item{
-        font-size: 12px;
-        grid-template-columns: 0.5fr 2fr 1fr;
-        padding: 15px 8px;
-    }
-    .order-item select{
-        padding: 5px;
-        font-size: 12px;
-    }
-    .order-item img{
-        width: 40px;
-    }
+
+.order-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
+}
+
+.order-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #3b82f6, #10b981);
+}
+
+/* Order Content Layout */
+.order-item-content {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.order-item-img {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.order-item-img img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.order-details {
+  flex: 1;
+}
+
+/* Typography */
+.order-item-food {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.order-item-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 0.25rem;
+}
+
+.order-item-address {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.order-item-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #3b82f6;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Stats Bar */
+.order-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(148, 163, 184, 0.3);
+}
+
+.order-amount {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 1.1rem;
+}
+
+.order-items-count {
+  background: #e2e8f0;
+  color: #334155;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Status Select */
+.order-status select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.order-status select:focus {
+  outline: none;
+  background: white;
+  box-shadow: 0 0 0 2px #3b82f6, 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.order-status::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 0.7rem;
+  pointer-events: none;
+}
+
+/* Status Colors */
+.order-status select option[value="Food Processing"] {
+  color: #f59e0b;
+}
+
+.order-status select option[value="Out for delivery"] {
+  color: #3b82f6;
+}
+
+.order-status select option[value="Delivered"] {
+  color: #10b981;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .order {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .order {
+    width: 100%;
+    margin-left: 0;
+    padding: 1.5rem 1rem;
+  }
+
+  .order-list {
+    grid-template-columns: 1fr;
+  }
+
+  .order h3 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .order {
+    padding: 1.25rem 1rem;
+  }
+
+  .order-item-content {
+    flex-direction: column;
+  }
+
+  .order-item-img {
+    width: 100%;
+    height: 120px;
+  }
+
+  .order-status select {
+    padding: 0.75rem;
+  }
 }

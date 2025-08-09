@@ -1,0 +1,224 @@
+/* Dashboard.css - Optimized for Sidebar Integration */
+
+/* Base styles with sidebar awareness */
+.dashboard-container {
+  padding: 1rem;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  transition: margin 0.3s ease;
+}
+
+/* Sidebar-aware layout adjustment */
+@media (min-width: 769px) {
+  .dashboard-container {
+    margin-left: 280px; /* Matches sidebar width */
+    width: calc(100% - 280px);
+  }
+}
+
+.dashboard-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #2d3748;
+  position: relative;
+}
+
+.dashboard-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+}
+
+/* Summary Cards - Enhanced Grid */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.summary-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 4px solid;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Color-coded summary card borders */
+.summary-card:nth-child(1) { border-color: #4299e1; }
+.summary-card:nth-child(2) { border-color: #48bb78; }
+.summary-card:nth-child(3) { border-color: #ecc94b; }
+.summary-card:nth-child(4) { border-color: #9f7aea; }
+
+.summary-icon {
+  font-size: 2rem;
+  margin-right: 1.25rem;
+  padding: 0.75rem;
+  border-radius: 50%;
+  background: rgba(66, 153, 225, 0.1);
+}
+
+.summary-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-label {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* Charts Section - Modern Card Style */
+.charts-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.chart-container, .revenue-chart {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.chart-container:hover, .revenue-chart:hover {
+  transform: translateY(-3px);
+}
+
+.chart-title {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chart-title::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 20px;
+  background: linear-gradient(to bottom, #3b82f6, #10b981);
+  border-radius: 4px;
+}
+
+/* Recent Orders - Enhanced Table */
+.recent-orders {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9375rem;
+}
+
+.orders-table th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+  color: #334155;
+  position: sticky;
+  top: 0;
+  padding: 1rem 1.25rem;
+}
+
+.orders-table td {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.orders-table tr:last-child td {
+  border-bottom: none;
+}
+
+.orders-table tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Enhanced Badges */
+.status-badge, .payment-badge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    padding: 1.25rem;
+  }
+  
+  .charts-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .summary-value {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .orders-table th, 
+  .orders-table td {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}

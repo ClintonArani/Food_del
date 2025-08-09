@@ -69,6 +69,14 @@ const registerUser = async (req, res) => {
         res.json({ success: false, message: "Error" });
     }
 };
+export const listUsers = async (req, res) => {
+  try {
+    const users = await userModel.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
 
