@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 const App = () => {
-  const url = "http://localhost:4000";
+  const url = "https://food-del-ten-tau.vercel.app";
 
   // Sidebar open state
   const [sidebarOpen, setSidebarOpen] = useState(false);
