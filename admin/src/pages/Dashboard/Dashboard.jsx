@@ -7,8 +7,7 @@ import './Dashboard.css';
 
 const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042"];
 
-const Dashboard = () => {
-  const url = "http://localhost:4000"; // Your backend base URL
+const Dashboard = ({url}) => {
 
   const [foods, setFoods] = useState([]);
   const [orders, setOrders] = useState([]);
